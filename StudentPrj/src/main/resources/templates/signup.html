@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="my-card">
+					<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+					  <p th:text="${session.message.content}"></p>
+					  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+					</div>
+						<h1 class="text-center">Register Here</h1>
+						<form novalidate action="" th:action="@{/do_register}" method="post" th:object="${student}">
+						
+						<div class="form-group">
+						    <label for="exampleInputEmail1" class="form-label">First Name</label>
+						    <input 
+						    name="fname"
+						    type="text" 
+						    class="form-control" 
+						    th:classappend="${#fields.hasErrors('fname') ? 'is-invalid':''}"
+						    id="fname_field" 
+						    aria-describedby="emailHelp"
+						    required
+						    th:value="${student.fname}"
+						    />
+						    <div class="invalid-feedback" th:each="e : ${#fields.errors('fname')}" th:text="${e}">
+					          
+					        </div>
+						</div>
+						<div class="form-group">
+						    <label for="exampleInputEmail1" class="form-label">Last Name</label>
+						    <input 
+						    name="lname"
+						    type="text" 
+						    class="form-control" 
+						    th:classappend="${#fields.hasErrors('lname') ? 'is-invalid':''}"
+						    id="lname_field" 
+						    aria-describedby="emailHelp"
+						    required
+						    th:value="${student.lname}"
+						    />
+						    <div class="invalid-feedback" th:each="e : ${#fields.errors('lname')}"th:text="${e}">
+					          
+					        </div>
+						</div>
+						<div class="form-group">
+						    <label for="exampleInputEmail1" class="form-label">Email</label>
+						    <input 
+						    name="email"
+						    type="email" 
+						    class="form-control" 
+						    th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}"
+						    id="email_field" 
+						    aria-describedby="emailHelp"
+						    required
+						    th:value="${student.email}"
+						    />
+						    <div class="invalid-feedback" th:each="e : ${#fields.errors('email')}"th:text="${e}">
+					          
+					        </div>
+						</div>
+						<div class="form-group">
+						    <label for="exampleInputEmail1" class="form-label">Password</label>
+						    <input 
+						    name="password"
+						    type="password" 
+						    class="form-control" 
+						    th:classappend="${#fields.hasErrors('password') ? 'is-invalid':''}"
+						    id="password_field" 
+						    aria-describedby="emailHelp"
+						    required
+						    th:value="${student.password}"
+						    />
+						    <div class="invalid-feedback" th:each="e : ${#fields.errors('password')}"th:text="${e}">
+					          
+					        </div>
+						</div>
+						<div class="form-group">
+						    <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
+						    <input 
+						    name="mobno"
+						    type="text" 
+						    class="form-control" 
+						    th:classappend="${#fields.hasErrors('mobno') ? 'is-invalid':''}"
+						    id="number_field" 
+						    aria-describedby="emailHelp"
+						    required
+						    th:value="${student.mobno}"
+						    />
+						    <div class="invalid-feedback" th:each="e : ${#fields.errors('mobno')}"th:text="${e}">
+					          
+					        </div>
+						</div>
+						<br>
+						<div class="container text-center">
+						<button type="submit" class="btn bg-primary text-white">Submit</button>
+						<button type="reset" class="btn bg-warning text-white">Reset</button>
+						</div>
+						
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
